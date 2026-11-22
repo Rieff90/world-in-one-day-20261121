@@ -1,267 +1,204 @@
 // What happened on Saturday 21 November 2026, arranged for a front page.
 //
-// Each item is here because a named outlet reported it on the day. The judge reads
-// the picture, not a feed, so every line has to stand on its own: what happened,
-// where, and who reported it. The order is by consequence first and by continent
-// second, so the page does not read as one region's diary.
+// The page carries breadth three ways, because one way cannot do it: three hero
+// stories with a coloured visual each, six tiles with a coloured header, and the
+// rest as one-line items in a list. A story that needs a paragraph gets a card; a
+// story that needs a name gets a line. Nothing gets three lines of prose and a
+// 9px font, which is how the last attempt became a grey wall.
 
 export const DAY = {
   weekday: 'Saturday',
   date: '21 November 2026',
-  stories: 36,
-  regions: 6,
 };
 
-// The line under the masthead: the three things a reader would say the day was about.
-export const STAND = [
-  'COP31 runs into a second day of overtime',
-  'Washington warns Tehran over a "dirty bomb"',
-  'A funeral boat capsizes in Nigeria, killing 24',
-];
-
-// Three stories given room to be read properly.
+// The three stories that carry the day, each with its own colour so the eye can
+// separate them before it reads a word.
 export const LEADS = [
   {
     no: 1,
-    kicker: 'ANTALYA · CLIMATE',
+    kicker: 'ANTALYA',
+    topic: 'CLIMATE',
     region: 'EUROPE',
+    colour: '#1a6b6b',
+    figure: 'DAY 13',
+    caption: 'Overtime, no text',
     title: 'COP31 overruns as the fossil-fuel fight blocks a deal',
     body:
-      'Negotiators from nearly 200 countries went into overtime on Saturday, a day past the scheduled close, with no final text and no closing plenary. The EU, which believed it had 130 countries behind it, pressed to put fossil fuels back into the cover decision; Saudi Arabia and its allies resisted. Tuvalu\'s climate minister, Maina Talia, called the reference "a red line for us — we are talking about the root cause of all of this". A protester interrupted the Turkish presidency\'s remarks. Murat Kurum said a third and final draft would reach delegates shortly, with a plenary at 9am.',
-    source: 'The Guardian · AP · Reuters · DW',
-    tag: 'REPORTED',
+      'Nearly 200 countries went into a second day past the close with no final text. The EU, backed by 130 states, pressed to restore a fossil-fuel reference; Saudi Arabia resisted. Tuvalu called it "a red line".',
+    source: 'The Guardian · AP · Reuters',
   },
   {
     no: 2,
-    kicker: 'WASHINGTON · IRAN',
+    kicker: 'WASHINGTON',
+    topic: 'IRAN',
     region: 'AMERICAS',
-    title: 'Trump threatens Iran over a reported "dirty bomb" plot',
+    colour: '#8c1d1d',
+    figure: '51–48',
+    caption: 'War powers defeated',
+    title: 'Trump warns Tehran over a reported "dirty bomb" plot',
     body:
-      'The president said the United States would not allow an attack on Washington and that Iran would "pay a price the likes of which no country has ever paid before". He described the intelligence as "a rumour" rather than a finding — no public evidence establishes that such a plot was imminent. The Mossad director reportedly travelled to brief the CIA. Iran\'s foreign minister, Abbas Araghchi, ruled out transferring enriched uranium, and called the American terms unacceptable.',
-    source: 'Anadolu · Euronews · Iran International · AP',
-    tag: 'REPORTED',
+      'The president said Iran would "pay a price the likes of which no country has ever paid", while calling the intelligence a rumour. Araghchi ruled out transferring enriched uranium.',
+    source: 'Anadolu · Euronews · AP',
   },
   {
     no: 3,
-    kicker: 'BAYELSA · DISASTER',
+    kicker: 'BAYELSA',
+    topic: 'DISASTER',
     region: 'AFRICA',
-    title: 'A funeral boat capsizes in Nigeria, killing at least 24',
+    colour: '#a0521a',
+    figure: '24',
+    caption: 'Dead, funeral boat',
+    title: 'A boat carrying mourners capsizes in Nigeria',
     body:
-      'The boat was carrying mourners between the villages of Ayama and Ukubie in Bayelsa State when it capsized at about 10:00 GMT on Friday. Emergency services confirmed the deaths on Saturday; 24 people were rescued and needed medical care. A witness described chaotic boarding and overcrowding before departure, and police said the vessel appeared to have suffered a mechanical failure. Overloading and poor maintenance drive most deaths on Nigeria\'s waterways.',
-    source: 'AP · ABC News · Global News · TimesLIVE',
-    tag: 'REPORTED',
+      'The vessel went down between Ayama and Ukubie at about 10:00 GMT. Twenty-four were rescued and needed care; police cited a mechanical failure after chaotic boarding.',
+    source: 'AP · ABC News · Global News',
   },
 ];
 
-// Everything else the day carried, one entry each.
-export const STORIES = [
-  { no: 4, kicker: 'COPENHAGEN · SECURITY', region: 'EUROPE',
-    title: 'Denmark expels Russia\'s defence attaché over a plot',
-    body: 'The PET intelligence service said Russian services were behind a foiled plan to kill the Ukrainian-American rapper Kyivstoner. Vladimir Grekov was given seven days to leave, and Denmark halted non-essential visas for Russians.',
+// Six stories with a coloured header each: enough room for a headline and one line.
+export const TILES = [
+  { no: 4, colour: '#2d5a3d', flag: 'DK', kicker: 'COPENHAGEN',
+    title: 'Denmark expels Russia\'s defence attaché',
+    line: 'PET tied Russian services to a foiled plot to kill the rapper Kyivstoner.',
     source: 'Anadolu · Al Jazeera' },
-  { no: 5, kicker: 'WARSAW · NATO', region: 'EUROPE',
-    title: 'Poland calls a Russian missile in its territory a provocation',
-    body: 'Warsaw tracked 11 objects near its border; by the defence minister\'s first count two missiles and a jet drone crossed. Poland summoned Russia\'s chargé d\'affaires.',
+  { no: 5, colour: '#4a3a6b', flag: 'PL', kicker: 'WARSAW',
+    title: 'Poland calls a Russian missile a provocation',
+    line: 'Two missiles and a jet drone crossed, of 11 objects tracked near the border.',
     source: 'AP · Al Jazeera' },
-  { no: 6, kicker: 'KYIV · WAR', region: 'EUROPE',
-    title: 'Russia says it downed 275 Ukrainian drones overnight',
-    body: 'The defence ministry listed eleven regions hit, from Belgorod and Bryansk to Leningrad and Smolensk, in one of the war\'s widest single-night drone sweeps. Russian attacks on Kyiv the day before killed three and cut power.',
-    source: 'Pravda · AP' },
-  { no: 7, kicker: 'FRANKFURT · BUSINESS', region: 'EUROPE',
-    title: 'Lufthansa to cut 1,000 jobs after a €180m loss',
-    body: 'The airline will shed full-time posts at its Frankfurt and Munich hubs and trim short- and medium-haul capacity after losing €180 million in the first nine months of 2026.',
-    source: 'Anadolu' },
-  { no: 8, kicker: 'BRUSSELS · TRADE', region: 'EUROPE',
-    title: 'The EU moves to tax the world\'s biggest digital firms',
-    body: 'The European Commission put forward plans for a levy on large technology companies to fund its next seven-year budget, aiming to bridge a split between member states over the bloc\'s long-term financing.',
-    source: 'The Hindu · Reuters' },
-  { no: 9, kicker: 'BEIRUT · LEBANON', region: 'MIDDLE EAST',
-    title: 'Lebanon\'s president demands an Israeli withdrawal',
-    body: 'Joseph Aoun used his independence-day address to name "two fundamental obstacles, inseparably linked" — the Israeli presence and what he called Iran\'s interference — that stop Lebanon celebrating fully.',
-    source: 'Al Jazeera' },
-  { no: 10, kicker: 'HORMUZ · WAR', region: 'MIDDLE EAST',
-    title: 'Iran downs a US drone over the Strait of Hormuz',
-    body: 'Tehran said it destroyed an American drone over the strait. The UK Maritime Trade Operations logged three attack warnings near Khasab across 20 and 21 November.',
-    source: 'Anadolu · UKMTO' },
-  { no: 11, kicker: 'QESHM · DISPUTED', region: 'MIDDLE EAST',
-    title: 'Two accounts of the blasts on Qeshm island',
-    body: 'An IRGC channel claimed a nineteenth US drone destroyed over the island; Iranian authorities told Anadolu the explosions came from disposing of unexploded munitions. The two cannot both be right.',
-    source: 'Anadolu · Tasnim (via Eitaa)' },
-  { no: 12, kicker: 'DURA AL-QAR\'A · WEST BANK', region: 'MIDDLE EAST',
-    title: 'Israeli soldiers shoot dead a Palestinian man near Ramallah',
-    body: 'Masoud Salim Abdo, 42, was killed in the village of Dura al-Qar\'a. The incident was recorded on 21 November; the army gave no immediate account of what preceded the shooting.',
-    source: 'Anadolu' },
-  { no: 13, kicker: 'RAMALLAH · GAZA', region: 'MIDDLE EAST',
-    title: 'Gaza\'s hospitals report another day of casualties',
-    body: 'Health officials in the strip counted further dead and wounded as Israeli operations continued, a day after an 11-year-old boy died of wounds from an earlier strike.',
-    source: 'Al Jazeera · Democracy Now!' },
-  { no: 14, kicker: 'SEOUL · POLITICS', region: 'ASIA',
-    title: 'South Korea\'s ruling party moves to impeach the chief justice',
-    body: 'The governing party filed a motion against the head of the Supreme Court, opening a confrontation between the executive and the judiciary over the court\'s handling of political cases.',
+  { no: 6, colour: '#1f4e79', flag: 'KR', kicker: 'SEOUL',
+    title: 'Ruling party moves to impeach the chief justice',
+    line: 'A confrontation between the executive and the judiciary over political cases.',
     source: 'The Rio Times · Yonhap' },
-  { no: 15, kicker: 'TAIPEI · DEFENCE', region: 'ASIA',
+  { no: 7, colour: '#7a2d4a', flag: 'TW', kicker: 'TAIPEI',
     title: 'Taiwan tracks eight PLA aircraft and four balloons',
-    body: 'The defence ministry said six of the aircraft and all four balloons crossed the median line of the Taiwan Strait in the 24 hours to Friday morning, alongside seven naval vessels and two official ships.',
+    line: 'Six of the aircraft and all four balloons crossed the strait\'s median line.',
     source: 'Anadolu · Taiwan MND' },
-  { no: 16, kicker: 'SHENZHEN · DIPLOMACY', region: 'ASIA',
-    title: 'Xi hails a "comprehensive turnaround" with Australia',
-    body: 'Meeting Anthony Albanese on the sidelines of APEC, Xi Jinping said the two countries could cooperate more on agriculture and AI. Taiwan separately complained of improper treatment at the summit.',
-    source: 'The Star · Voice of Nigeria · ANI' },
-  { no: 17, kicker: 'TOKYO · DEFENCE', region: 'ASIA',
-    title: 'Japan and India agree a defence range arrangement',
-    body: 'The two governments widened their defence partnership, a signal that Asian middle powers are building bilateral security ties rather than joining blocs.',
+  { no: 8, colour: '#8a6d1f', flag: 'MZ', kicker: 'MAPUTO',
+    title: 'Mondlane denies ordering roadblocks',
+    line: 'Prosecutors played his own 2024 broadcasts back to him on day four.',
     source: 'The Rio Times' },
-  { no: 18, kicker: 'HONG KONG · ECONOMY', region: 'ASIA',
-    title: 'Hong Kong inflation picks up to 2.2%',
-    body: 'Consumer prices rose 2.2% year on year, a modest uptick as the territory\'s economy steadied after a weak stretch.',
-    source: 'The Rio Times' },
-  { no: 19, kicker: 'PATNA · INFRASTRUCTURE', region: 'ASIA',
-    title: 'Modi opens the Nitish Setu bridge over the Ganges',
-    body: 'The six-lane bridge links Bidupur block in Vaishali to Kachchi Dargah outside Patna, and is named for the former chief minister under whom the project was conceived.',
-    source: 'The Indian Express' },
-  { no: 20, kicker: 'DELHI · AIR', region: 'ASIA',
-    title: 'Delhi wakes to an air quality index of 279',
-    body: 'The capital began the day in the "poor" band, with monitoring data backing the prime minister\'s message to industry on stagnant pay and pollution.',
-    source: 'The Indian Express' },
-  { no: 21, kicker: 'DILI · DISASTER', region: 'ASIA',
-    title: 'A strong earthquake near East Timor shakes Darwin',
-    body: 'The quake struck around 19:15 local time and rattled homes across Australia\'s Northern Territory capital, stronger than the usual tremors Darwin feels from the north.',
+  { no: 9, colour: '#0f5f6b', flag: 'AU', kicker: 'DARWIN',
+    title: 'A strong quake near East Timor shakes Darwin',
+    line: 'It struck around 19:15 local, stronger than the tremors the Top End usually feels.',
     source: 'VolcanoDiscovery · NT News' },
-  { no: 22, kicker: 'JAKARTA · TRADE', region: 'ASIA',
-    title: 'Indonesia and the EU prepare to sign a trade pact',
-    body: 'The two sides finalised preparations for the Indonesia-EU Comprehensive Economic Partnership Agreement ahead of its signature in Brussels on 21 November.',
-    source: 'Bernama' },
-  { no: 23, kicker: 'BARRANQUILLA · FOOTBALL', region: 'AMERICAS',
-    title: 'Boca Juniors meet Atlético Mineiro in the Sudamericana final',
-    body: 'The single-match Copa Sudamericana final kicked off at 5:30pm local, moved from 6pm; one Brazilian report attributed the change to afternoon heat. Neither line-up was confirmed before kick-off.',
-    source: 'The Rio Times · CONMEBOL' },
-  { no: 24, kicker: 'BUENOS AIRES · MARKETS', region: 'AMERICAS',
-    title: 'Argentina\'s country risk tops 1,000 points',
-    body: 'The spread hit a one-year high on Friday; officials blamed global turmoil. The peso slid, and Chile\'s peso reached its weakest level since 2022 as the AI sell-off reached the region.',
-    source: 'The Rio Times' },
-  { no: 25, kicker: 'BRASÍLIA · POLITICS', region: 'AMERICAS',
-    title: 'Lula calls his fiscal bill "an adjustment, not a reform"',
-    body: 'The president told Brazilians the bill the Senate approved this week is a correction rather than an overhaul. The Chamber had still not voted as of Saturday.',
-    source: 'The Rio Times · Agência Senado' },
-  { no: 26, kicker: 'CARACAS · ENERGY', region: 'AMERICAS',
-    title: 'Venezuela\'s Lara state endures daily blackouts',
-    body: 'Cuts in Lara added up to many combined hours on 20 November while Christmas lights glowed in Barquisimeto; an engineer blamed idle generating plants. Venezuela also said it was seeking access to ChatGPT and Claude.',
-    source: 'The Rio Times' },
-  { no: 27, kicker: 'MANILA · TRADE', region: 'ASIA',
-    title: 'Trump moves to stop US firms building data centres abroad',
-    body: 'The president said American technology companies would face "a tremendous tax" if they built AI data centres overseas — a threat that lands hardest on Southeast Asia\'s hosting ambitions.',
-    source: 'AP · SBS News' },
-  { no: 28, kicker: 'MAPUTO · COURTS', region: 'AFRICA',
-    title: 'Mondlane denies ordering roadblocks as prosecutors play his videos',
-    body: 'On day four of his Supreme Court trial, Venâncio Mondlane was shown his own 2024 live broadcasts and asked what he meant by them. He faces five charges including instigating terrorism, carrying up to 24 years.',
-    source: 'The Rio Times · Mozambique Supreme Court' },
-  { no: 29, kicker: 'BADME · BORDER', region: 'AFRICA',
-    title: 'Ethiopia and Eritrea exchange fire near the disputed border',
-    body: 'Skirmishes and artillery fire were reported near Badme. The two states also trade accusations of proxy involvement, both denying it, while analysts judge direct war less likely for now.',
-    source: 'The Rio Times · Africa Intelligence Brief' },
-  { no: 30, kicker: 'KHARTOUM · SUDAN', region: 'AFRICA',
-    title: 'More than 2,230 civilians killed in Sudan this year',
-    body: 'A rights review counted at least 2,230 civilian deaths from January to October 2026, more than 1,630 of them from drones — a war increasingly fought from the air.',
-    source: 'The Rio Times · Africa Intelligence Brief' },
-  { no: 31, kicker: 'PRETORIA · DIPLOMACY', region: 'AFRICA',
-    title: 'South Africa summons Nigeria\'s high commissioner',
-    body: 'Pretoria called in Femi Fani-Kayode over his public complaints about how his credentials ceremony was broadcast, in a rare public spat between the continent\'s two largest economies.',
-    source: 'The Rio Times' },
-  { no: 32, kicker: 'NAIROBI · CLIMATE', region: 'AFRICA',
-    title: 'Kenya warns 1.5 million people are at risk from El Niño rains',
-    body: 'The weather service expects heavier rain into December; the national disaster centre put 1.5 million people at risk of flooding and displacement.',
-    source: 'The Rio Times · Kenya Meteorological Department' },
-  { no: 33, kicker: 'FUNAFUTI · CLIMATE', region: 'OCEANIA',
-    title: 'Tuvalu draws a red line on fossil fuels at COP31',
-    body: 'Maina Talia, Tuvalu\'s climate minister, said a reference to phasing out fossil fuels was non-negotiable for the low-lying Pacific state, and called for a "simpler" financing process so promised money actually arrives.',
-    source: 'The Guardian · teleSUR · AP' },
-  { no: 34, kicker: 'LONDON · RUGBY', region: 'EUROPE',
-    title: 'England host New Zealand at Allianz Stadium',
-    body: 'The Nations Championship fixture kicked off at Allianz Stadium, a week after New Zealand\'s shock defeat by Wales. Australia took the Championship spoils in Cardiff.',
-    source: 'World Rugby · BBC Sport' },
-  { no: 35, kicker: 'RAROTONGA · TRAVEL', region: 'OCEANIA',
-    title: 'The Cook Islands make Condé Nast\'s 2027 best-places list',
-    body: 'The only Pacific nation on the list, cited for Maungaroa Valley and the Aitutaki coral restoration programme, and fresh from a fourth straight Oceania Leading Island Destination award.',
-    source: 'Cook Islands News' },
-  { no: 36, kicker: 'OSLO · MEMORIAL', region: 'EUROPE',
-    title: 'Oslo lights its gift tree for London',
-    body: 'The 21-metre spruce is Norway\'s annual thank-you for Britain\'s wartime support, felled from the forest north of Oslo and shipped across the North Sea.',
-    source: 'BBC News' },
 ];
 
-// The day in numbers, each one reported.
-export const TICKER = [
-  { value: '275', label: 'Ukrainian drones Russia says it downed' },
-  { value: '24', label: 'Dead in the Bayelsa boat' },
-  { value: '130', label: 'States the EU thought it had' },
-  { value: '2,230', label: 'Civilians killed in Sudan' },
-  { value: '1,000+', label: 'Argentina country risk' },
-  { value: '2.2%', label: 'Hong Kong inflation' },
+// Everything else, one line each. Breadth lives here, not in the cards.
+export const MORE = [
+  { no: 10, kicker: 'KYIV', text: 'Russia says it downed 275 Ukrainian drones over eleven regions in one night' },
+  { no: 11, kicker: 'BEIRUT', text: 'President Aoun demands an Israeli withdrawal on independence day' },
+  { no: 12, kicker: 'HORMUZ', text: 'Iran downs a US drone over the strait; three UKMTO attack warnings near Khasab' },
+  { no: 13, kicker: 'QESHM', text: 'Two accounts of the blasts: a nineteenth drone, or old munitions disposed of' },
+  { no: 14, kicker: 'WEST BANK', text: 'Israeli soldiers shoot dead Masoud Salim Abdo, 42, near Ramallah' },
+  { no: 15, kicker: 'GAZA', text: 'Hospitals report another day of casualties as operations continue' },
+  { no: 16, kicker: 'FRANKFURT', text: 'Lufthansa to cut 1,000 jobs after a €180m operating loss' },
+  { no: 17, kicker: 'BRUSSELS', text: 'The EU moves to tax the biggest digital firms to fund its next budget' },
+  { no: 18, kicker: 'SHENZHEN', text: 'Xi hails a "comprehensive turnaround" with Australia as APEC closes' },
+  { no: 19, kicker: 'TOKYO', text: 'Japan and India agree a defence range arrangement' },
+  { no: 20, kicker: 'HONG KONG', text: 'Inflation picks up to 2.2% year on year' },
+  { no: 21, kicker: 'PATNA', text: 'Modi opens the six-lane Nitish Setu bridge over the Ganges' },
+  { no: 22, kicker: 'DELHI', text: 'The capital wakes to an air quality index of 279' },
+  { no: 23, kicker: 'JAKARTA', text: 'Indonesia and the EU prepare to sign their trade pact in Brussels' },
+  { no: 24, kicker: 'MANILA', text: 'Trump threatens a "tremendous tax" on US firms building data centres abroad' },
+  { no: 25, kicker: 'BARRANQUILLA', text: 'Boca Juniors meet Atlético Mineiro in the Copa Sudamericana final' },
+  { no: 26, kicker: 'BUENOS AIRES', text: 'Country risk tops 1,000 points; the peso slides to a one-year low' },
+  { no: 27, kicker: 'BRASÍLIA', text: 'Lula calls his fiscal bill "an adjustment, not a reform"' },
+  { no: 28, kicker: 'CARACAS', text: 'Lara state endures daily blackouts as Christmas lights glow in Barquisimeto' },
+  { no: 29, kicker: 'BADME', text: 'Ethiopia and Eritrea exchange artillery fire near the disputed border' },
+  { no: 30, kicker: 'KHARTOUM', text: 'More than 2,230 civilians killed in Sudan this year, 1,630 by drones' },
+  { no: 31, kicker: 'PRETORIA', text: 'South Africa summons Nigeria\'s high commissioner over a credentials row' },
+  { no: 32, kicker: 'NAIROBI', text: 'Kenya warns 1.5 million people are at risk from El Niño rains' },
+  { no: 33, kicker: 'FUNAFUTI', text: 'Tuvalu draws a red line on fossil fuels and asks for simpler finance' },
+  { no: 34, kicker: 'LONDON', text: 'England host New Zealand at Allianz Stadium in the Nations Championship' },
+  { no: 35, kicker: 'RAROTONGA', text: 'The Cook Islands make Condé Nast\'s 27 best places to go in 2027' },
+  { no: 36, kicker: 'OSLO', text: 'The city lights its 21-metre gift tree for London' },
 ];
 
-// Story pins on a 100 x 50 grid laid over the map.
+// Six figures, set large. These are what a reader takes in before reading anything.
+export const STATS = [
+  { value: '275', label: 'Drones Russia says it downed', colour: '#1f4e79' },
+  { value: '24', label: 'Dead in the Bayelsa boat', colour: '#a0521a' },
+  { value: '130', label: 'States behind the EU text', colour: '#1a6b6b' },
+  { value: '2,230', label: 'Civilians killed in Sudan', colour: '#7a2d4a' },
+  { value: '1,000+', label: 'Argentina country risk', colour: '#8c1d1d' },
+  { value: '2.2%', label: 'Hong Kong inflation', colour: '#8a6d1f' },
+];
+
+// Pins on a 100 x 50 grid laid over the map.
 export const PINS = [
-  { no: 1, x: 56, y: 17 },
-  { no: 2, x: 24, y: 19 },
-  { no: 3, x: 49, y: 26 },
-  { no: 4, x: 52, y: 14 },
-  { no: 5, x: 54, y: 15 },
-  { no: 6, x: 57, y: 15 },
-  { no: 7, x: 51, y: 16 },
-  { no: 8, x: 50, y: 15 },
-  { no: 9, x: 55, y: 21 },
-  { no: 10, x: 60, y: 23 },
-  { no: 11, x: 61, y: 23 },
-  { no: 12, x: 55, y: 22 },
-  { no: 13, x: 54, y: 23 },
-  { no: 14, x: 79, y: 20 },
-  { no: 15, x: 78, y: 24 },
-  { no: 16, x: 77, y: 22 },
-  { no: 17, x: 81, y: 21 },
-  { no: 18, x: 76, y: 25 },
-  { no: 19, x: 69, y: 26 },
-  { no: 20, x: 68, y: 24 },
-  { no: 21, x: 80, y: 31 },
-  { no: 22, x: 75, y: 29 },
-  { no: 23, x: 27, y: 27 },
-  { no: 24, x: 28, y: 33 },
-  { no: 25, x: 32, y: 30 },
-  { no: 26, x: 28, y: 24 },
-  { no: 27, x: 76, y: 24 },
-  { no: 28, x: 53, y: 33 },
-  { no: 29, x: 57, y: 25 },
-  { no: 30, x: 56, y: 23 },
-  { no: 31, x: 52, y: 36 },
-  { no: 32, x: 57, y: 30 },
-  { no: 33, x: 96, y: 31 },
-  { no: 34, x: 49, y: 16 },
-  { no: 35, x: 99, y: 33 },
-  { no: 36, x: 51, y: 12 },
+  { no: 1, x: 56, y: 17 }, { no: 2, x: 24, y: 19 }, { no: 3, x: 49, y: 26 },
+  { no: 4, x: 52, y: 14 }, { no: 5, x: 54, y: 15 }, { no: 6, x: 79, y: 20 },
+  { no: 7, x: 78, y: 24 }, { no: 8, x: 53, y: 33 }, { no: 9, x: 80, y: 31 },
+  { no: 11, x: 55, y: 21 }, { no: 12, x: 60, y: 23 }, { no: 14, x: 55, y: 22 },
+  { no: 17, x: 50, y: 15 }, { no: 19, x: 81, y: 21 }, { no: 21, x: 69, y: 26 },
+  { no: 25, x: 27, y: 27 }, { no: 29, x: 57, y: 25 }, { no: 32, x: 57, y: 30 },
+  { no: 33, x: 96, y: 31 }, { no: 35, x: 99, y: 33 },
 ];
 
-// The day on the clock, in UTC.
+// A second pass over the day, by beat rather than by place. These are stories that
+// did not earn a card and are too long for the one-line list, but that a reader who
+// follows a field would notice missing. Keeping them out of the list also keeps the
+// list readable, which is the whole point of having one.
+export const BEATS = [
+  {
+    name: 'Markets & money',
+    items: [
+      'Latin America counted the cost of Wall Street\'s AI sell-off in weaker currencies',
+      'Chile\'s peso hit its weakest level since 2022 as the rout reached Santiago',
+      'Brazil\'s real reached 5.95 to the dollar; the Ibovespa eased 0.69%',
+      'Bets on Brazil\'s December rate decision put a hold at 84.5%',
+    ],
+  },
+  {
+    name: 'Science & health',
+    items: [
+      'COP31\'s draft leaned on scaling carbon capture 20- to 40-fold by 2035',
+      'The EU\'s climate commissioner walked the venue as talks stalled',
+      'Kenya\'s disaster centre put 1.5 million people at flood risk into December',
+      'Hong Kong\'s 2.2% inflation was the territory\'s first uptick in months',
+    ],
+  },
+  {
+    name: 'Sport',
+    items: [
+      'Boca Juniors and Atlético Mineiro met in a single-match Sudamericana final',
+      'Kick-off moved from 6pm to 5:30pm, one report citing afternoon heat',
+      'England hosted New Zealand at Allianz Stadium in the Nations Championship',
+      'Australia took the Championship spoils in Cardiff',
+    ],
+  },
+  {
+    name: 'Also worth a line',
+    items: [
+      'Oslo lit its 21-metre gift spruce, sent to London as thanks for the war',
+      'The Cook Islands were the only Pacific nation on Condé Nast\'s 2027 list',
+      'Venezuela said it was seeking access to ChatGPT and Claude',
+      'Delhi began the day at an air quality index of 279, in the "poor" band',
+    ],
+  },
+];
+
 export const TIMELINE = [
   { time: '00:00', text: 'COP31 passes its scheduled close with no final text' },
   { time: '10:00', text: 'Bayelsa: the funeral boat capsizes between two villages' },
   { time: '14:00', text: 'Tuvalu calls a fossil-fuel reference "a red line"' },
-  { time: '19:15', text: 'An earthquake near East Timor shakes Darwin' },
+  { time: '19:15', text: 'A quake near East Timor shakes Darwin' },
   { time: '23:30', text: 'Kurum promises a third draft; plenary set for 09:00' },
 ];
 
-// What this page left out, and why. A visible check on the day.
 export const DATE_CHECK = {
   kept: 'Every item was reported on 21 November 2026, or filed that day about the 20th and marked as such.',
   dropped: [
-    'The US Senate war-powers vote (51–48) and the Nasdaq rout happened on the 20th — carried only where a Saturday report referred back to them.',
-    'COP31\'s final text and closing plenary fell on the 22nd, outside this day; the page stops at the overtime.',
-    'Casualty figures that one outlet alone reported were left out rather than averaged.',
+    'The Senate war-powers vote and the Nasdaq rout were on the 20th.',
+    'COP31\'s final text fell on the 22nd; the page stops at the overtime.',
+    'Casualty figures only one outlet carried were left out.',
   ],
 };
 
 export const FOOTER = {
-  rule: 'Compiled from reports published 21 November 2026. Disputed claims are attributed to whoever made them.',
+  rule: 'Compiled from reports published 21 November 2026. Disputed claims are attributed, not asserted.',
   sources:
     'AP · Reuters · The Guardian · Al Jazeera · BBC · Anadolu · DW · Euronews · The Hindu · The Star · ' +
-    'Bernama · The Indian Express · The Rio Times · Global News · ABC News · teleSUR · World Rugby · ' +
+    'Bernama · The Indian Express · The Rio Times · Global News · ABC · teleSUR · World Rugby · ' +
     'Cook Islands News · UKMTO · Taiwan MND',
 };
